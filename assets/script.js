@@ -3,6 +3,10 @@ var key = 'b5238790541c39db2b120d5831c48c7b'
 var cityFormEl = document.querySelector("#city-search")
 var cityInputEl = document.querySelector('.btn')
 var currentWeatherEl = document.querySelector("#current-weather")
+var forecastWeatherEl = document.querySelector("#weekday-forecast")
+var temps = []
+// var DateTime = luxon.DateTime;
+// console.log(DateTime)
 
 
 var getCurrentWeather = function(lat, lon){
@@ -12,7 +16,8 @@ var getCurrentWeather = function(lat, lon){
     })
     .then(function(weatherData){
         console.log(weatherData)
-        //getCityLocation(weatherData)
+        displayCurrentWeather(weatherData)
+        displayForecast(weatherData)
     })
 }
 
@@ -44,7 +49,6 @@ if (cityName) {
   cityInputEl.value = "";
   var searchEl = document.createElement("h3")
   searchEl.innerHTML = cityName
-  
   currentWeatherEl.appendChild(searchEl)
 
 } 
@@ -52,9 +56,43 @@ if (cityName) {
 //     console.log(event);
 // }
 
-// var displayCurrentWeatcher = function () {
+var displayCurrentWeather = function (currentData) {
+    var temp = currentData.current.temp
+    var wind = currentData.current.wind_speed
+    var humid = currentData.current.humidity
+    var UV = currentData.current.uvi
+
+    var tempEl = document.createElement("p")
+    tempEl.innerHTML = "<span> Temp: </span>" + temp + "&deg" + "F"
+    var windEl = document.createElement("p")
+    windEl.innerHTML = "<span> Wind: </span>" + wind + "MPH"
+    var humidEl = document.createElement("p")
+    humidEl.innerHTML = "<span> Humidity: </span>" + humid + "%"
+    var UVEl = document.createElement("p")
+    UVEl.innerHTML = "<span> UV Index: </span>" + UV
     
-// }
+    currentWeatherEl.append(tempEl, windEl, humidEl, UVEl)
+    
+ }
+
+ var displayForecast = function(forecastData){
+      for(var i = 0; i < 5; i++ ){
+         var temp = forecastData.daily[i].temp.day
+         var wind = forecastData.daily[i].wind_gust
+         var humid = forecastData.daily[i].humidity
+
+         var temp_el = document.createElement("p")
+         temp_el.innerHTML = "<span> Temp: </span>" + temp + "&deg" + "F"
+         var wind_el = document.createElement('p')
+         wind_el.innerHTML = "<span> Wind: </span>" + wind + "MPH"
+         var humid_el = document.createElement('p')
+         humid_el.innerHTML = "<span> Humidity: </span>" + humid + "%"
+         forecastWeatherEl.append(temp_el, wind_el, humid_el)
+         
+         
+     }
+
+ }
 
 //getCityLocation(city)
 cityInputEl.addEventListener('click', handleCityInput)
