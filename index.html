@@ -15,16 +15,19 @@
     </header>
     <main>
         <div class="container">
-        <div class="row">
+        <div class="row justify-content-between">
             <div id="city-input" class="col-2">
                 <h3 class="search-header">Search for a City:</h2>
                 <input name="city-search" id="city-search" type="text" class="city-search"/>
                 <button type="submit" class="btn btn-primary">SEARCH</button>
             </div>
-            <div class="col-10" id="current-weather"></div>
-            <div class="col-2" id="weekday-forecast"></div>
+            <div class="col-10 justify-content-evenly" id="current-weather"></div>
         </div>
+        <div class="container">
+            <h3 class="d-flex justify-content-center">5 Day Forecast:</h3>
+        <div class="row justify-content-end" id="weekday-forecast"></div>
         
+        </div>
         </div>
     </main>
     <script src="./assets/script.js"></script>

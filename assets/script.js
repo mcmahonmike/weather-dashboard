@@ -80,6 +80,8 @@ var displayCurrentWeather = function (currentData) {
          var temp = forecastData.daily[i].temp.day
          var wind = forecastData.daily[i].wind_gust
          var humid = forecastData.daily[i].humidity
+         var cards = document.createElement('div')
+         cards.classList.add('card', 'col-2')
 
          var temp_el = document.createElement("p")
          temp_el.innerHTML = "<span> Temp: </span>" + temp + "&deg" + "F"
@@ -87,7 +89,8 @@ var displayCurrentWeather = function (currentData) {
          wind_el.innerHTML = "<span> Wind: </span>" + wind + "MPH"
          var humid_el = document.createElement('p')
          humid_el.innerHTML = "<span> Humidity: </span>" + humid + "%"
-         forecastWeatherEl.append(temp_el, wind_el, humid_el)
+         cards.append(temp_el, wind_el, humid_el)
+         forecastWeatherEl.append(cards)
          
          
      }
