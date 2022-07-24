@@ -56,23 +56,30 @@ if (cityName) {
 // }
 
 var displayCurrentWeather = function (currentData) {
-    var temp = currentData.current.temp
-    var wind = currentData.current.wind_speed
-    var humid = currentData.current.humidity
-    var UV = currentData.current.uvi
+    let icon = document.createElement('img')
 
-    var tempEl = document.createElement("p")
-    tempEl.innerHTML = "<span> Temp: </span>" + temp + "&deg" + "F"
-    var windEl = document.createElement("p")
-    windEl.innerHTML = "<span> Wind: </span>" + wind + "MPH"
-    var humidEl = document.createElement("p")
-    humidEl.innerHTML = "<span> Humidity: </span>" + humid + "%"
-    var UVEl = document.createElement("p")
-    UVEl.innerHTML = "<span> UV Index: </span>" + UV
-    
-    currentWeatherEl.append(tempEl, windEl, humidEl, UVEl)
-    
- }
+    let iconId = currentData.current.weather[0].icon
+    icon.setAttribute("src", `https://openweathermap.org/img/w/${iconId}.png`)
+    currentCity.appendChild(icon)
+    currentTemp.innerText = currentData.current.temp
+    currentWind.innerText = currentData.current.wind_speed
+    currentHumidity.innerText = currentData.current.humidity
+    let UVIndex = currentData.current.uvi
+    currentUVIndex.style.opacity = 1
+    if (UVIndex < 3) {
+        currentUVIndex.style.backgroundColor = "green"
+    }
+    else if (UVIndex < 6) {
+        currentUVIndex.style.backgroundColor = "yellow"
+    }
+    else if (UVIndex < 8) {
+        currentUVIndex.style.backgroundColor = "orange"
+    }
+    else {
+        currentUVIndex.style.backgroundColor = "red"
+    }
+    currentUVIndex.innerText = UVIndex
+}
 
  var displayForecast = function(forecastData){
       for(var i = 0; i < 5; i++ ){
@@ -82,7 +89,7 @@ var displayCurrentWeather = function (currentData) {
          var cards = document.createElement('div')
          cards.classList.add('card', 'col-2')
 
-         var temp_el = document.createElement("p")
+         var temp_el = document.append("#temp")
          temp_el.innerHTML = "<span> Temp: </span>" + temp + "&deg" + "F"
          var wind_el = document.createElement('p')
          wind_el.innerHTML = "<span> Wind: </span>" + wind + "MPH"
