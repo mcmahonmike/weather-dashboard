@@ -1,5 +1,4 @@
 var key = 'b5238790541c39db2b120d5831c48c7b'
-//var city = "Milwaukee"
 var cityFormEl = document.querySelector("#city-search")
 var cityInputEl = document.querySelector('.btn')
 var currentWeatherEl = document.querySelector("#current-weather")
@@ -8,7 +7,7 @@ var temps = []
 // var DateTime = luxon.DateTime;
 // console.log(DateTime)
 
-
+// function for getting current weather
 var getCurrentWeather = function(lat, lon){
     fetch("https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&units=imperial&appid=" + key)
     .then(function(response) {
