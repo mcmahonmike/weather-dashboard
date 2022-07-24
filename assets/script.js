@@ -1,7 +1,7 @@
 var key = 'b5238790541c39db2b120d5831c48c7b'
 var cityFormEl = document.querySelector("#city-search")
-var cityInputEl = document.querySelector('.btn')
-var currentWeatherEl = document.querySelector("#current-weather")
+var cityInputEl = document.querySelector('.search-btn')
+var currentWeatherEl = document.querySelector("#weather")
 var forecastWeatherEl = document.querySelector("#weekday-forecast")
 var temps = []
 // var DateTime = luxon.DateTime;
